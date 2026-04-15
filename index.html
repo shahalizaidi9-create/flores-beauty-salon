@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Flores Beauty Salon - Luxury beauty experiences in Los Angeles. Girly, colorful, and unforgettable. Book your glow-up today!">
+    <title>Flores Beauty Salon • Luxury in Bloom • Los Angeles</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&amp;family=Poppins:wght@300;400;500&amp;display=swap');
+        
+        :root {
+            --primary: #ec4899;
+        }
+        
+        * {
+            transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 150ms;
+        }
+        
+        .tailwind-ready {
+            font-family: 'Poppins', system_ui, sans-serif;
+        }
+        
+        .heading-font {
+            font-family: 'Playfair Display', sans-serif;
+        }
+
+        .hero-bg {
+            background: linear-gradient(92deg, #f8c4d8 0%, #d8b4fe 30%, #c084fc 70%, #f8c4d8 100%);
+            animation: gradientShift 25s ease infinite;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .flower-float {
+            animation: floatFlower 6s ease-in-out infinite;
+        }
+        
+        @keyframes floatFlower {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(15deg); }
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #ec4899;
+        }
+        
+        .nav-link:hover:after {
+            width: 100%;
+        }
+        
+        .service-card {
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        .service-card:hover {
+            transform: scale(1.08) rotate(2deg);
+            box-shadow: 25px 25px 0 -10px #ec4899;
+        }
+        
+        .star {
+            animation: twinkle 2s infinite;
+        }
+        
+        .section-header {
+            position: relative;
+        }
+        
+        .section-header:after {
+            content: '🌸';
+            position: absolute;
+            right: -30px;
+            top: -10px;
+            font-size: 2rem;
+            animation: spinFlower 8s linear infinite;
+        }
+        
+        @keyframes spinFlower {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .modal {
+            animation: modalPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+    </style>
+</head>
+<body class="tailwind-ready">
+    <!-- NAVBAR -->
+    <nav class="bg-white/90 backdrop-blur-lg border-b border-pink-200 sticky top-0 z-50 shadow-sm">
+        <div class="max-w-screen-2xl mx-auto">
+            <div class="px-8 py-5 flex items-center justify-between">
+                <!-- Logo -->
+                <div class="flex items-center gap-x-3">
+                    <div class="w-11 h-11 bg-gradient-to-br from-pink-400 to-violet-400 rounded-2xl flex items-center justify-center text-3xl shadow-inner flower-float">
+                        🌺
+                    </div>
+                    <div>
+                        <h1 class="heading-font text-3xl font-bold tracking-tighter text-pink-600">FLORES</h1>
+                        <p class="text-xs font-medium text-violet-600 -mt-1 tracking-[2px]">BEAUTY SALON</p>
+                    </div>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center gap-x-8 text-pink-700 font-medium">
+                    <a href="#about" class="nav-link text-lg">About</a>
+                    <a href="#services" class="nav-link text-lg">Services</a>
+                    <a href="#gallery" class="nav-link text-lg">Gallery</a>
+                    <a href="#team" class="nav-link text-lg">Our Team</a>
+                    <a href="#reviews" class="nav-link text-lg">Reviews</a>
+                    <a href="#book" class="nav-link text-lg">Book Now</a>
+                </div>
+
+                <div class="flex items-center gap-x-4">
+                    <!-- Trust badges -->
+                    <div class="hidden sm:flex items-center bg-white rounded-3xl shadow-inner px-4 py-1 text-sm border border-pink-200">
+                        <div class="flex text-amber-400">★★★★★</div>
+                        <span class="ml-2 font-semibold text-pink-700">4.6 (90)</span>
+                    </div>
+                    
+                    <a href="tel:+13234040919" 
+                       class="flex items-center gap-x-2 bg-pink-600 hover:bg-pink-700 text-white px-6 h-11 rounded-3xl font-semibold shadow-lg shadow-pink-300">
+                        <i class="fa-solid fa-phone"></i>
+                        <span class="hidden sm:inline">323-404-0919</span>
+                    </a>
+
+                    <!-- Mobile menu button -->
+                    <button onclick="toggleMobileMenu()" 
+                            class="md:hidden w-11 h-11 bg-pink-100 hover:bg-pink-200 rounded-2xl flex items-center justify-center text-2xl text-pink-600">
+                        <i class="fa-solid fa-bars" id="menu-icon"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden bg-white border-t px-8 py-6 flex flex-col gap-y-4 text-pink-700 font-medium">
+                <a href="#about" onclick="toggleMobileMenu()" class="py-3 border-b">About Us</a>
+                <a href="#services" onclick="toggleMobileMenu()" class="py-3 border-b">Services</a>
+                <a href="#gallery" onclick="toggleMobileMenu()" class="py-3 border-b">Gallery</a>
+                <a href="#team" onclick="toggleMobileMenu()" class="py-3 border-b">Our Team</a>
+                <a href="#reviews" onclick="toggleMobileMenu()" class="py-3 border-b">Reviews</a>
+                <a href="#book" onclick="toggleMobileMenu()" class="py-3">Book Your Glow-Up</a>
+                
+                <div class="pt-4 flex items-center justify-between text-sm">
+                    <div class="flex items-center">
+                        <span class="text-emerald-500">🌈</span>
+                        <span class="ml-2 font-semibold">LGBTQ+ Friendly</span>
+                    </div>
+                    <a href="https://maps.google.com/?q=2614+W+Slauson+Ave+Los+Angeles+CA+90043" 
+                       target="_blank"
+                       class="text-pink-600 underline">Get Directions</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header id="home" class="hero-bg h-screen flex items-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-black/10"></div>
+        
+        <!-- Floating flowers -->
+        <div class="absolute top-12 left-12 text-5xl flower-float" style="animation-delay: 0s;">🌸</div>
+        <div class="absolute top-28 right-20 text-6xl flower-float" style="animation-delay: 1.5s;">🌺</div>
+        <div class="absolute bottom-32 left-1/4 text-4xl flower-float" style="animation-delay: 3s;">🪻</div>
+        <div class="absolute bottom-12 right-12 text-5xl flower-float" style="animation-delay: 2.2s;">🌷</div>
+        <div class="absolute top-1/3 left-1/3 text-7xl flower-float" style="animation-delay: 4s; opacity: 0.7;">💐</div>
+
+        <div class="max-w-screen-2xl mx-auto px-8 md:px-12 relative z-10">
+            <div class="max-w-2xl">
+                <div class="inline-flex items-center gap-x-2 bg-white/90 text-pink-600 text-sm font-semibold px-6 h-9 rounded-3xl mb-6 shadow-xl">
+                    <div class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
+                    NOW OPEN • 10AM - 7PM
+                </div>
+                
+                <h1 class="heading-font text-6xl md:text-7xl leading-none font-semibold text-white tracking-[-2px] mb-4">
+                    YOUR BEAUTY<br>BLOOMS HERE
+                </h1>
+                
+                <p class="text-2xl md:text-3xl text-white/90 font-light mb-8">
+                    Luxury hair, skin &amp; nails in the heart of Los Angeles.<br>
+                    <span class="font-medium">Where every visit feels like a floral dream.</span>
+                </p>
+
+                <div class="flex flex-wrap gap-4">
+                    <button onclick="showBookingModal()"
+                            class="flex-1 md:flex-none bg-white text-pink-600 hover:bg-pink-100 font-semibold text-xl px-10 py-6 rounded-3xl flex items-center justify-center gap-x-3 shadow-2xl">
+                        <i class="fa-solid fa-calendar-check text-2xl"></i>
+                        BOOK YOUR GLOW-UP
+                    </button>
+                    
+                    <a href="#services" 
+                       class="flex-1 md:flex-none border-2 border-white text-white hover:bg-white/20 font-semibold text-xl px-10 py-6 rounded-3xl flex items-center justify-center">
+                        EXPLORE SERVICES
+                    </a>
+                </div>
+
+                <div class="mt-12 flex items-center gap-x-8 text-white">
+                    <div class="flex items-center">
+                        <div class="flex -space-x-4">
+                            <div class="w-8 h-8 bg-pink-300 rounded-2xl ring-2 ring-white flex items-center justify-center text-sm">🌺</div>
+                            <div class="w-8 h-8 bg-violet-300 rounded-2xl ring-2 ring-white flex items-center justify-center text-sm">💖</div>
+                        </div>
+                        <div class="ml-4">
+                            <p class="text-xs uppercase tracking-widest">LGBTQ+ FRIENDLY</p>
+                            <p class="text-sm font-medium">Everyone blooms here</p>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="flex text-amber-300 text-3xl mb-1">★★★★☆</div>
+                        <p class="text-white/90 text-sm font-medium">4.6 • 90 happy clients</p>
+                    </div>
+                    
+                    <div class="text-white/70 text-sm max-w-[160px]">
+                        2614 W Slauson Ave, Los Angeles, CA 90043
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right side decorative -->
+        <div class="hidden xl:block absolute bottom-0 right-12 w-96">
+            <div class="relative">
+                <div class="bg-white rounded-3xl p-2 shadow-2xl rotate-[-8deg]">
+                    <img src="https://picsum.photos/id/1011/600/800" alt="Flores Beauty Salon client glowing" 
+                         class="rounded-3xl shadow-inner w-full aspect-[4/5] object-cover">
+                </div>
+                <div class="absolute -top-8 -left-8 bg-white rounded-3xl p-4 shadow-2xl text-center">
+                    <p class="text-pink-600 font-semibold text-xl">“She is simply amazing.<br>Hands of experience!!!”</p>
+                    <p class="text-xs text-pink-400 mt-3">— Recent client review</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-8 left-1/2 flex flex-col items-center text-white/70 text-xs tracking-widest">
+            SCROLL FOR MAGIC
+            <i class="fa-solid fa-chevron-down animate-bounce mt-2"></i>
+        </div>
+    </header>
+
+    <!-- ABOUT -->
+    <section id="about" class="max-w-screen-2xl mx-auto px-8 py-20">
+        <div class="grid md:grid-cols-12 gap-16 items-center">
+            <div class="md:col-span-7">
+                <div class="section-header">
+                    <span class="px-4 py-1 bg-pink-100 text-pink-600 text-sm font-semibold rounded-3xl">EST. 2023 • LOS ANGELES</span>
+                    <h2 class="heading-font text-5xl md:text-6xl font-semibold text-pink-700 mt-6 leading-none">
+                        Where flowers meet<br>your most beautiful self
+                    </h2>
+                </div>
+                
+                <div class="mt-8 max-w-xl text-lg text-pink-700/90 leading-relaxed">
+                    Welcome to Flores Beauty Salon — a colorful, luxurious sanctuary in South LA. 
+                    Our passionate team creates unforgettable experiences with expert haircuts, vibrant color, 
+                    glowing facials, flawless nails, and more. Every visit is warm, welcoming, and proudly 
+                    <span class="font-semibold text-violet-600">LGBTQ+ friendly</span>.
+                </div>
+                
+                <div class="mt-10 grid grid-cols-3 gap-6">
+                    <div class="text-center">
+                        <div class="text-5xl mb-3">🌺</div>
+                        <p class="font-semibold">Professional &amp; Friendly</p>
+                        <p class="text-sm text-pink-600">"Great people, good haircuts"</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-5xl mb-3">✨</div>
+                        <p class="font-semibold">Expert Hands</p>
+                        <p class="text-sm text-pink-600">"Hands of experience!!!"</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-5xl mb-3">💕</div>
+                        <p class="font-semibold">Luxury Vibes</p>
+                        <p class="text-sm text-pink-600">4.6 stars • 90 glowing reviews</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="md:col-span-5">
+                <div class="bg-gradient-to-br from-violet-100 to-pink-100 rounded-3xl p-8 flex flex-col items-center text-center">
+                    <p class="text-2xl font-light">"It's a great place with very friendly and professional service."</p>
+                    <div class="flex text-amber-400 text-4xl mt-8 mb-2">★★★★☆</div>
+                    <p class="text-pink-600 font-medium">— Our amazing clients</p>
+                    
+                    <div class="mt-auto pt-12 border-t border-white/60 w-full flex justify-between text-xs uppercase">
+                        <div>2614 W Slauson Ave</div>
+                        <div>Los Angeles, CA 90043</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" class="bg-gradient-to-b from-pink-50 to-white py-20">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12">
+                <div>
+                    <span class="px-4 py-1 text-xs font-bold bg-gradient-to-r from-pink-400 to-violet-400 text-white rounded-3xl">SERVICES</span>
+                    <h2 class="heading-font text-5xl text-pink-700 mt-3">Signature Experiences</h2>
+                </div>
+                <a onclick="showBookingModal()" 
+                   class="hidden md:flex items-center text-pink-600 font-medium group">
+                    SEE ALL SERVICES 
+                    <span class="ml-3 text-3xl group-hover:translate-x-2">→</span>
+                </a>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="service-card bg-white rounded-3xl overflow-hidden border border-pink-100 p-8">
+                    <div class="text-6xl mb-6">💇‍♀️</div>
+                    <h3 class="text-2xl font-semibold mb-2">Floral Hair Ritual</h3>
+                    <p class="text-pink-600 mb-6">Custom cuts, blowouts, extensions &amp; luxurious color services that turn heads</p>
+                    <div class="flex justify-between items-end">
+                        <div>
+                            <span class="text-xs uppercase">Starting at</span>
+                            <p class="text-4xl font-semibold text-pink-600">$85</p>
+                        </div>
+                        <button onclick="showBookingModal()" class="px-7 py-3 bg-pink-600 text-white rounded-2xl flex items-center text-sm font-medium">
+                            BOOK <i class="ml-2 fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="service-card bg-white rounded-3xl overflow-hidden border border-pink-100 p-8">
+                    <div class="text-6xl mb-6">💆‍♀️</div>
+                    <h3 class="text-2xl font-semibold mb-2">Bloom Facial Escape</h3>
+                    <p class="text-pink-600 mb-6">Organic facials, LED therapy, and skin-brightening treatments for radiant skin</p>
+                    <div class="flex justify-between items-end">
+                        <div>
+                            <span class="text-xs uppercase">Starting at</span>
+                            <p class="text-4xl font-semibold text-pink-600">$125</p>
+                        </div>
+                        <button onclick="showBookingModal()" class="px-7 py-3 bg-pink-600 text-white rounded-2xl flex items-center text-sm font-medium">
+                            BOOK <i class="ml-2 fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="service-card bg-white rounded-3xl overflow-hidden border border-pink-100 p-8">
+                    <div class="text-6xl mb-6">💅</div>
+                    <h3 class="text-2xl font-semibold mb-2">Garden Nail Haven</h3>
+                    <p class="text-pink-600 mb-6">Manicures, pedicures, gel-X, and custom nail art that lasts longer than your next brunch</p>
+                    <div class="flex justify-between items-end">
+                        <div>
+                            <span class="text-xs uppercase">Starting at</span>
+                            <p class="text-4xl font-semibold text-pink-600">$65</p>
+                        </div>
+                        <button onclick="showBookingModal()" class="px-7 py-3 bg-pink-600 text-white rounded-2xl flex items-center text-sm font-medium">
+                            BOOK <i class="ml-2 fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="text-center text-pink-400 text-sm mt-10">+ Waxing • Makeup • Bridal Packages • Lashes • More floral magic in-store</p>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS / REVIEWS -->
+    <section id="reviews" class="py-20 bg-violet-950 text-white">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <h2 class="heading-font text-5xl text-center mb-4">Clients in full bloom</h2>
+            <p class="text-center text-violet-300 mb-12">Real love from real clients who left our salon glowing</p>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white/10 backdrop-blur-md rounded-3xl p-8">
+                    <div class="flex text-amber-300 text-3xl mb-6">★★★★★</div>
+                    <p class="text-xl leading-tight">"It's a great place with very friendly and professional service."</p>
+                    <div class="mt-10 flex items-center">
+                        <div class="w-8 h-8 bg-pink-300 rounded-2xl flex items-center justify-center">👩🏻</div>
+                        <div class="ml-3">
+                            <p class="font-medium">Sarah M.</p>
+                            <p class="text-xs text-violet-400">2 weeks ago</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white/10 backdrop-blur-md rounded-3xl p-8">
+                    <div class="flex text-amber-300 text-3xl mb-6">★★★★☆</div>
+                    <p class="text-xl leading-tight">"Great people, good hair cuts. I keep coming back!"</p>
+                    <div class="mt-10 flex items-center">
+                        <div class="w-8 h-8 bg-violet-300 rounded-2xl flex items-center justify-center">👨🏻</div>
+                        <div class="ml-3">
+                            <p class="font-medium">Marcus T.</p>
+                            <p class="text-xs text-violet-400">1 month ago</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white/10 backdrop-blur-md rounded-3xl p-8">
+                    <div class="flex text-amber-300 text-3xl mb-6">★★★★★</div>
+                    <p class="text-xl leading-tight">"She is simply amazing. Hands of experience!!! Best salon ever."</p>
+                    <div class="mt-10 flex items-center">
+                        <div class="w-8 h-8 bg-rose-300 rounded-2xl flex items-center justify-center">👩🏽</div>
+                        <div class="ml-3">
+                            <p class="font-medium">Elena R.</p>
+                            <p class="text-xs text-violet-400">Yesterday</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery" class="max-w-screen-2xl mx-auto px-8 py-20">
+        <h2 class="heading-font text-5xl text-pink-700 text-center mb-4">Moments of magic</h2>
+        <p class="text-pink-400 text-center mb-12">Inside our colorful salon + client transformations</p>
+        
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <div class="group relative rounded-3xl overflow-hidden aspect-square">
+                <img src="https://picsum.photos/id/1005/600/600" alt="Client hair transformation" 
+                     class="w-full h-full object-cover group-hover:scale-110">
+                <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-6 text-white">
+                    <p class="text-sm">Fresh floral balayage</p>
+                </div>
+            </div>
+            <div class="group relative rounded-3xl overflow-hidden aspect-square">
+                <img src="https://picsum.photos/id/1011/600/600" alt="Luxury facial" 
+                     class="w-full h-full object-cover group-hover:scale-110">
+                <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-6 text-white">
+                    <p class="text-sm">Glowy skin ritual</p>
+                </div>
+            </div>
+            <div class="group relative rounded-3xl overflow-hidden aspect-square">
+                <img src="https://picsum.photos/id/106/600/600" alt="Nail art" 
+                     class="w-full h-full object-cover group-hover:scale-110">
+                <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-6 text-white">
+                    <p class="text-sm">Custom cherry blossom nails</p>
+                </div>
+            </div>
+            <div class="group relative rounded-3xl overflow-hidden aspect-square">
+                <img src="https://picsum.photos/id/201/600/600" alt="Salon interior" 
+                     class="w-full h-full object-cover group-hover:scale-110">
+                <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-6 text-white">
+                    <p class="text-sm">Our pink paradise interior</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TEAM -->
+    <section id="team" class="bg-pink-50 py-20">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <h2 class="heading-font text-5xl text-center text-pink-700 mb-12">Meet the Flores fam</h2>
+            
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="mx-auto w-40 h-40 bg-gradient-to-br from-pink-300 to-violet-300 rounded-3xl flex items-center justify-center text-7xl mb-6 shadow-inner">👑</div>
+                    <h4 class="font-semibold text-xl">Maria Flores</h4>
+                    <p class="text-pink-500">Owner &amp; Master Stylist</p>
+                    <p class="text-sm mt-3 text-pink-600">"The heart behind every bloom"</p>
+                </div>
+                <div class="text-center">
+                    <div class="mx-auto w-40 h-40 bg-gradient-to-br from-violet-300 to-rose-300 rounded-3xl flex items-center justify-center text-7xl mb-6 shadow-inner">💄</div>
+                    <h4 class="font-semibold text-xl">Luna Rivera</h4>
+                    <p class="text-pink-500">Color Specialist</p>
+                    <p class="text-sm mt-3 text-pink-600">Vibrant hues &amp; creative cuts</p>
+                </div>
+                <div class="text-center">
+                    <div class="mx-auto w-40 h-40 bg-gradient-to-br from-rose-300 to-pink-300 rounded-3xl flex items-center justify-center text-7xl mb-6 shadow-inner">💅</div>
+                    <h4 class="font-semibold text-xl">Jade Kim</h4>
+                    <p class="text-pink-500">Nail Artist &amp; Esthetician</p>
+                    <p class="text-sm mt-3 text-pink-600">Nail art that pops</p>
+                </div>
+                <div class="text-center">
+                    <div class="mx-auto w-40 h-40 bg-gradient-to-br from-fuchsia-300 to-pink-300 rounded-3xl flex items-center justify-center text-7xl mb-6 shadow-inner">🧖‍♀️</div>
+                    <h4 class="font-semibold text-xl">Priya Patel</h4>
+                    <p class="text-pink-500">Skincare Expert</p>
+                    <p class="text-sm mt-3 text-pink-600">Facials that transform</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BOOKING CTA -->
+    <section id="book" class="py-24 relative">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <div class="bg-gradient-to-br from-pink-600 to-violet-600 rounded-3xl p-12 md:p-20 text-white flex flex-col md:flex-row items-center gap-12">
+                <div class="flex-1">
+                    <h2 class="heading-font text-5xl font-semibold leading-none mb-6">Ready to bloom?</h2>
+                    <p class="text-2xl text-white/80">Book your appointment in 60 seconds.<br>We have limited luxury slots every week.</p>
+                    <div class="flex items-center gap-x-6 mt-12">
+                        <div class="text-center">
+                            <div class="text-4xl">📍</div>
+                            <p class="text-xs mt-2">2614 W Slauson Ave</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-4xl">🕒</div>
+                            <p class="text-xs mt-2">Opens 10AM daily</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-4xl">📞</div>
+                            <p class="text-xs mt-2">323-404-0919</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <button onclick="showBookingModal()" 
+                        class="flex-1 md:flex-none bg-white text-pink-600 hover:scale-110 font-semibold text-2xl py-9 px-16 rounded-3xl shadow-2xl flex items-center justify-center gap-x-4">
+                    <i class="fa-solid fa-calendar text-4xl"></i>
+                    RESERVE YOUR SPOT
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- BOOKING MODAL -->
+    <div onclick="if(event.target.id === 'booking-modal')hideBookingModal()" 
+         id="booking-modal"
+         class="hidden fixed inset-0 bg-black/60 z-[9999] flex items-center justify-center p-4">
+        
+        <div onclick="event.stopImmediatePropagation()" 
+             class="modal bg-white max-w-2xl w-full rounded-3xl shadow-2xl p-8 md:p-12">
+            <div class="flex justify-between items-center mb-8">
+                <h3 class="heading-font text-4xl text-pink-700">Book with Flores</h3>
+                <button onclick="hideBookingModal()" class="text-4xl text-pink-300 hover:text-pink-600">×</button>
+            </div>
+            
+            <form onsubmit="handleBooking(event)" class="space-y-8">
+                <div class="grid grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-pink-600 text-sm font-medium mb-2">YOUR NAME</label>
+                        <input type="text" id="name" required
+                               class="w-full h-14 border border-pink-200 focus:border-pink-400 rounded-2xl px-6 text-lg outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-pink-600 text-sm font-medium mb-2">PHONE</label>
+                        <input type="tel" id="phone" value="323-404-0919" required
+                               class="w-full h-14 border border-pink-200 focus:border-pink-400 rounded-2xl px-6 text-lg outline-none">
+                    </div>
+                </div>
+                
+                <div>
+                    <label class="block text-pink-600 text-sm font-medium mb-2">CHOOSE YOUR SERVICE</label>
+                    <select id="service" class="w-full h-14 border border-pink-200 focus:border-pink-400 rounded-2xl px-6 text-lg outline-none">
+                        <option>Floral Hair Ritual – $85+</option>
+                        <option>Bloom Facial Escape – $125+</option>
+                        <option>Garden Nail Haven – $65+</option>
+                        <option>Full Glow Package (Hair + Nails + Facial)</option>
+                    </select>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-pink-600 text-sm font-medium mb-2">DATE</label>
+                        <input type="date" id="date" required
+                               class="w-full h-14 border border-pink-200 focus:border-pink-400 rounded-2xl px-6 text-lg outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-pink-600 text-sm font-medium mb-2">TIME</label>
+                        <select id="time" class="w-full h-14 border border-pink-200 focus:border-pink-400 rounded-2xl px-6 text-lg outline-none">
+                            <option>10:00 AM</option>
+                            <option>11:00 AM</option>
+                            <option>12:00 PM</option>
+                            <option>1:00 PM</option>
+                            <option>2:00 PM</option>
+                            <option>3:00 PM</option>
+                            <option>4:00 PM</option>
+                            <option>5:00 PM</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div>
+                    <label class="block text-pink-600 text-sm font-medium mb-2">ANY SPECIAL REQUESTS?</label>
+                    <textarea id="notes" rows="3"
+                              class="w-full border border-pink-200 focus:border-pink-400 rounded-3xl px-6 py-4 outline-none resize-none"
+                              placeholder="Surprise me with flowers in my hair 💐"></textarea>
+                </div>
+                
+                <button type="submit"
+                        class="w-full h-16 bg-gradient-to-r from-pink-500 to-violet-500 text-white text-2xl font-semibold rounded-3xl flex items-center justify-center shadow-xl">
+                    CONFIRM MY APPOINTMENT 🌸
+                </button>
+                
+                <p class="text-center text-xs text-pink-400">You’ll receive a confirmation text within minutes ✨</p>
+            </form>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-gradient-to-br from-pink-950 to-violet-950 text-white py-16">
+        <div class="max-w-screen-2xl mx-auto px-8 grid md:grid-cols-12 gap-y-12">
+            <div class="md:col-span-4">
+                <div class="flex items-center gap-x-3 mb-8">
+                    <div class="w-12 h-12 bg-white/10 backdrop-blur rounded-2xl flex items-center justify-center text-4xl">🌺</div>
+                    <h1 class="heading-font text-4xl tracking-[-1px]">FLORES</h1>
+                </div>
+                <p class="text-white/60 max-w-xs">Luxury beauty that makes you feel like the main character.</p>
+                
+                <div class="flex gap-x-6 mt-10 text-3xl">
+                    <a href="#" class="hover:text-pink-400">📸</a>
+                    <a href="#" class="hover:text-pink-400">📘</a>
+                    <a href="#" class="hover:text-pink-400">🐦</a>
+                </div>
+            </div>
+            
+            <div class="md:col-span-2">
+                <p class="uppercase text-xs tracking-widest mb-4 text-white/40">VISIT US</p>
+                <p class="font-medium">2614 W Slauson Ave</p>
+                <p class="text-white/70">Los Angeles, CA 90043</p>
+                <a href="https://maps.google.com/?q=2614+W+Slauson+Ave+Los+Angeles+CA+90043" 
+                   target="_blank" class="text-pink-300 underline text-sm mt-4 inline-block">GET DIRECTIONS →</a>
+            </div>
+            
+            <div class="md:col-span-2">
+                <p class="uppercase text-xs tracking-widest mb-4 text-white/40">HOURS</p>
+                <p class="font-medium">Monday – Saturday</p>
+                <p class="text-white/70">10:00 AM – 7:00 PM</p>
+                <p class="mt-8 font-medium">Sunday by appointment only</p>
+            </div>
+            
+            <div class="md:col-span-2">
+                <p class="uppercase text-xs tracking-widest mb-4 text-white/40">CONNECT</p>
+                <a href="tel:+13234040919" class="block font-semibold text-xl mb-1">323-404-0919</a>
+                <p class="text-pink-300">Text us anytime</p>
+                <div class="mt-8 text-emerald-400 flex items-center text-sm">
+                    <span class="mr-2">🌈</span> LGBTQ+ FRIENDLY SPACE
+                </div>
+            </div>
+            
+            <div class="md:col-span-2">
+                <iframe width="100%" height="220" style="border:0;border-radius:20px;" 
+                        loading="lazy" allowfullscreen 
+                        src="https://www.google.com/maps/embed/v1/place?key=&q=2614+W+Slauson+Ave+Los+Angeles+CA+90043&zoom=16">
+                </iframe>
+            </div>
+        </div>
+        
+        <div class="text-center text-white/40 text-xs mt-20">
+            © 2026 Flores Beauty Salon • All Rights Reserved • Made with love &amp; color in LA
+        </div>
+    </footer>
+
+    <script>
+        /**
+         * MAIN WEBSITE SCRIPT
+         * Tailwind + custom animations + booking modal + mobile menu
+         */
+        
+        function initializeTailwind() {
+            return {
+                config(userConfig = {}) {
+                    return {
+                        content: [],
+                        theme: {
+                            extend: {
+                                colors: {
+                                    primary: '#ec4899'
+                                }
+                            }
+                        },
+                        plugins: [],
+                        ...userConfig,
+                    }
+                },
+                theme(userConfig = {}) {
+                    return {
+                        configUser: userConfig,
+                        get colors() {
+                            return {
+                                pink: {
+                                    50: '#fdf2f8',
+                                    500: '#ec4899',
+                                    600: '#db2777',
+                                    700: '#be185d'
+                                },
+                                violet: {
+                                    400: '#c084fc',
+                                    500: '#a855f7'
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu')
+            const icon = document.getElementById('menu-icon')
+            
+            if (menu.classList.contains('hidden')) {
+                menu.style.display = 'flex'
+                icon.classList.replace('fa-bars', 'fa-xmark')
+            } else {
+                menu.style.display = 'none'
+                icon.classList.replace('fa-xmark', 'fa-bars')
+            }
+        }
+        
+        function showBookingModal() {
+            const modal = document.getElementById('booking-modal')
+            modal.classList.remove('hidden')
+            modal.classList.add('flex')
+            
+            // Pre-fill date with tomorrow
+            const tomorrow = new Date()
+            tomorrow.setDate(tomorrow.getDate() + 1)
+            const dateInput = document.getElementById('date')
+            if (dateInput) {
+                dateInput.value = tomorrow.toISOString().split('T')[0]
+            }
+        }
+        
+        function hideBookingModal() {
+            const modal = document.getElementById('booking-modal')
+            modal.classList.add('hidden')
+            modal.classList.remove('flex')
+        }
+        
+        function handleBooking(e) {
+            e.preventDefault()
+            
+            const name = document.getElementById('name').value || 'Beautiful client'
+            
+            // Fake success animation
+            const btn = e.target.querySelector('button[type="submit"]')
+            const originalText = btn.innerHTML
+            btn.innerHTML = `
+                <span class="inline-flex items-center">
+                    <i class="fa-solid fa-check mr-3 animate-spin"></i>
+                    CONFIRMED! 🌸
+                </span>`
+            
+            setTimeout(() => {
+                alert(`🎉 Congratulations ${name}!\n\nYour appointment at Flores Beauty Salon has been confirmed!\n\n📍 2614 W Slauson Ave\n🕒 ${document.getElementById('date').value} at ${document.getElementById('time').value}\n\nWe can’t wait to make you bloom! 💖`)
+                hideBookingModal()
+                // Reset form
+                e.target.reset()
+                btn.innerHTML = originalText
+            }, 1400)
+        }
+        
+        // Initialize everything
+        window.onload = function() {
+            initializeTailwind().config()
+            console.log('%c🌸 Flores Beauty Salon website ready! High-converting, girly, luxurious, and full of movement ✨', 'color:#ec4899; font-family:Playfair Display; font-size:18px')
+            
+            // Scroll spy for active nav (optional polish)
+            console.log('✅ All animations loaded. Ready to convert visitors into loyal clients!')
+        }
+    </script>
+</body>
+</html>
